@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Хасан Сұлтанғалиев — Ұлы Отан соғысы және ІІО ардагері</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Playfair Display, Cinzel, Montserrat for Historical Military Prestige -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for medals and military theme -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            war: {
+              dark: '#0f0c08',
+              board: '#18130e',
+              khaki: '#403d29',
+              gold: '#d4af37',
+              red: '#961919',
+              redBright: '#c52222',
+              parchment: '#dfd7bf',
+              sepia: '#f4ecd8'
+            }
+          },
+          fontFamily: {
+            title: ['Cinzel', 'serif'],
+            serif: ['Lora', 'serif'],
+            sans: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Басты стильдер және винтажды атмосфера */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #0f0c08;
+      color: #dfd7bf;
+      overflow-x: hidden;
+      font-family: 'Lora', serif;
+    }
+
+    /* Фондағы от шоғы (Canvas) үшін */
+    #embersCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Винтажды соғыс шекарасы (Георгий таспасы стиліндегі акцент) */
+    .st-george-ribbon {
+      background: repeating-linear-gradient(
+        to right,
+        #111 0px,
+        #111 12px,
+        #e65c00 12px,
+        #e65c00 24px
+      );
+      box-shadow: 0 0 15px rgba(230, 92, 0, 0.4);
+    }
+
+    /* Ескі газет/қағаз фактурасының эффектісі */
+    .parchment-card {
+      background: linear-gradient(145deg, #1d1813, #15110d);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), 0 10px 25px rgba(0, 0, 0, 0.7);
+    }
+    .parchment-light {
+      background: #f1ebd8;
+      color: #262118;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 60px rgba(180, 140, 90, 0.35);
+      border: 1px solid #d4c5a0;
+    }
+
+    /* Алтын жалатылған тақта стилі */
+    .gold-emboss {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 12px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Қызыл жұлдыз анимациясы */
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 8px #c52222); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 18px #ff4d4d); transform: scale(1.04); }
+    }
+    .star-glow {
+      animation: pulseGlow 3.5s infinite ease-in-out;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f0c08;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #403d29;
+      border: 1px solid #d4af37;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #961919;
+    }
+  </style>
+</head>
+<body class="relative selection:bg-war-red selection:text-white">
+
+  <!-- Ұлы Отан соғысының мәңгілік алауы мен от шоқтары анимациясы -->
+  <canvas id="embersCanvas"></canvas>
+
+  <!-- Жоғарғы салтанатты таспа (Георгий таспасы) -->
+  <div class="st-george-ribbon h-3 w-full fixed top-0 left-0 z-50"></div>
+
+  <!-- Навигациялық панель -->
+  <header class="fixed top-3 left-0 w-full z-40 bg-war-dark/90 backdrop-blur-md border-b border-war-gold/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="text-war-redBright text-2xl star-glow"><i class="fas fa-star"></i></span>
+        <div>
+          <span class="font-title font-bold text-war-gold text-lg tracking-wider block">ХАСАН СҰЛТАНҒАЛИЕВ</span>
+          <span class="text-xs text-war-parchment/70 uppercase tracking-widest hidden sm:block">1925 – 2004 • Мәңгілік тағзым</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm font-sans tracking-wide">
+        <a href="#about" class="text-war-parchment hover:text-war-gold transition duration-200">Майдангер</a>
+        <a href="#chronicle" class="text-war-parchment hover:text-war-gold transition duration-200">Жауынгерлік жолы</a>
+        <a href="#exhibition" class="text-war-parchment hover:text-war-gold transition duration-200">Виртуалды көрме</a>
+        <a href="#interview" class="text-war-parchment hover:text-war-gold transition duration-200">Сұхбат & Естеліктер</a>
+        <a href="#media-room" class="text-war-parchment hover:text-war-gold transition duration-200">Медиатека</a>
+        <a href="#dynasty" class="text-war-parchment hover:text-war-gold transition duration-200">Әулет сабақтастығы</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="mobileMenuBtn" class="text-war-gold p-2 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Мобильді мәзір -->
+    <div id="mobileMenu" class="hidden md:hidden bg-war-board border-b border-war-gold/30 px-4 pt-2 pb-4 space-y-2 font-sans text-sm">
+      <a href="#about" class="block py-2 text-war-parchment border-b border-war-gold/10">Майдангер жайлы</a>
+      <a href="#chronicle" class="block py-2 text-war-parchment border-b border-war-gold/10">Жауынгерлік жолы</a>
+      <a href="#exhibition" class="block py-2 text-war-parchment border-b border-war-gold/10">Виртуалды көрме</a>
+      <a href="#interview" class="block py-2 text-war-parchment border-b border-war-gold/10">Сұхбат & Естеліктер</a>
+      <a href="#media-room" class="block py-2 text-war-parchment border-b border-war-gold/10">Медиатека (.mp3/.mp4/.jpg)</a>
+      <a href="#dynasty" class="block py-2 text-war-parchment">Әулет сабақтастығы</a>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-20">
+
+    <!-- БАСТЫ БӨЛІМ (HERO): Сол жақта қысқаша мәлімет, Оң жақта суреті -->
+    <section id="about" class="min-h-[92vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 relative">
+      <!-- Фондық соғыс реңкі декорациясы -->
+      <div class="absolute inset-0 bg-radial-gradient from-transparent via-war-dark/60 to-war-dark pointer-events-none"></div>
+
+      <div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- СОЛ ЖАҚ: Кішігірім негізгі мәліметтер -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          
+          <div class="inline-flex items-center space-x-3 bg-war-red/20 border border-war-red/50 px-4 py-1.5 rounded-full text-xs font-sans tracking-widest text-war-gold uppercase">
+            <i class="fas fa-medal text-war-gold"></i>
+            <span>Ұлы Жеңістің 80 жылдығына & Ардагердің 100 жылдығына</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-title font-extrabold text-war-gold tracking-tight leading-tight gold-emboss">
+            ХАСАН <br>
+            <span class="text-white">СҰЛТАНҒАЛИЕВ</span>
+          </h1>
+
+          <p class="text-sm sm:text-base font-sans font-semibold text-war-gold/90 tracking-wide uppercase border-l-4 border-war-red pl-4">
+            10.09.1925 — 03.09.2004 • Милиция полковнигі
+          </p>
+
+          <!-- Қысқаша ақпарат блогы -->
+          <div class="parchment-card p-6 rounded-xl border border-war-gold/30 text-war-parchment space-y-4 leading-relaxed">
+            <p class="italic text-lg text-war-gold/90 font-serif">
+              «Ешкім де, ешқашан да ұмытылмайды!»
+            </p>
+            <p class="text-sm sm:text-base text-stone-300">
+              <strong class="text-white">Хасан Сұлтанғалиев</strong> — Ұлы Отан соғысының отты майдандарын басынан өткерген жауынгер, Румыния, Польша, Германияны азат етуші майдангер гвардеец. Батыс Қазақстан облысы Тайпақ ауданының тумасы.
+            </p>
+            <p class="text-sm sm:text-base text-stone-300">
+              Соғыстан кейін 37 жылдан астам уақыт бойы Ішкі істер органдарында адал қызмет етіп, Теректі, Тайпақ, Чапаев аудандарында ел тыныштығын қорғаған өнегелі тұлға, КСРО ІІМ үздігі, құрметті милиция полковнигі.
+            </p>
+
+            <!-- Негізгі деректер көрсеткіші -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-center text-xs font-sans">
+              <div class="bg-black/50 p-3 rounded-lg border border-war-gold/20">
+                <span class="text-war-gold font-bold text-base block">1943 ж.</span>
+                <span class="text-stone-400">1 қаңтарда майданға аттанды</span>
+              </div>
+              <div class="bg-black/50 p-3 rounded-lg border border-war-gold/20">
+                <span class="text-war-gold font-bold text-base block">17 рет</span>
+                <span class="text-stone-400">И.Сталиннің жеке алғысы</span>
+              </div>
+              <div class="bg-black/50 p-3 rounded-lg border border-war-gold/20 col-span-2 sm:col-span-1">
+                <span class="text-war-gold font-bold text-base block">37 жыл</span>
+                <span class="text-stone-400">ІІО-дағы мінсіз қызметі</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Батырмалар -->
+          <div class="flex flex-wrap gap-4 pt-2 font-sans">
+            <a href="#exhibition" class="px-6 py-3 bg-gradient-to-r from-war-red to-war-redBright text-white font-semibold rounded-lg shadow-lg hover:brightness-110 transition duration-200 flex items-center space-x-2">
+              <i class="fas fa-landmark"></i>
+              <span>Виртуалды көрмені көру</span>
+            </a>
+            <a href="#media-room" class="px-6 py-3 bg-war-khaki/40 hover:bg-war-khaki/70 text-war-gold border border-war-gold/40 rounded-lg transition duration-200 flex items-center space-x-2">
+              <i class="fas fa-play-circle"></i>
+              <span>Медиатека & Сұхбат</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ОҢ ЖАҚ: Ардагердің үлкен ретро портреті -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md group">
+            
+            <!-- Артқы алтын-қызыл салтанатты жиектеме -->
+            <div class="absolute -inset-2 bg-gradient-to-tr from-war-red via-war-gold to-war-khaki rounded-2xl blur-md opacity-60 group-hover:opacity-100 transition duration-500"></div>
+
+            <div class="relative bg-war-dark p-3 rounded-2xl border-2 border-war-gold shadow-2xl">
+              <!-- Негізгі сурет (сіздің .docx ішіндегі басты портретке арналған орын) -->
+              <div class="overflow-hidden rounded-xl bg-stone-900 border border-war-gold/40 relative">
+                <img 
+                  id="heroMainPhoto" 
+                  src="image/portret.jpg" 
+                  alt="Сұлтанғалиев Хасан портреті" 
+                  class="w-full h-auto object-cover filter contrast-105 brightness-95 hover:scale-105 transition duration-700"
+                />
+                
+                <!-- Суреттің үстіндегі майдандық бұрыштар (декор) -->
+                <div class="absolute top-2 left-2 text-war-gold text-lg"><i class="fas fa-certificate"></i></div>
+                <div class="absolute top-2 right-2 text-war-gold text-lg"><i class="fas fa-certificate"></i></div>
+              </div>
+
+              <!-- Сурет астындағы жазу -->
+              <div class="mt-4 p-3 bg-war-board rounded-lg text-center border border-war-gold/20">
+                <h3 class="font-title font-bold text-war-gold text-sm tracking-widest uppercase">Милиция полковнигі</h3>
+                <p class="text-xs text-war-parchment/80 font-sans mt-0.5">КСРО ІІМ үздігі • ҰОС гвардия сержанты</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ЖАУЫНГЕРЛІК ЖӘНЕ ҚЫЗМЕТТІК ЖОЛЫ (ХРОНОЛОГИЯ) -->
+    <section id="chronicle" class="py-20 px-4 sm:px-6 lg:px-8 bg-war-board/90 border-y border-war-gold/20 relative">
+      <div class="max-w-6xl mx-auto">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="text-war-redBright text-3xl"><i class="fas fa-shield-halved"></i></div>
+          <h2 class="text-3xl sm:text-4xl font-title font-bold text-war-gold tracking-wide">ЕРЛІК ПЕН ҚЫЗМЕТ ШЕЖІРЕСІ</h2>
+          <div class="h-1 w-24 bg-war-red mx-auto"></div>
+          <p class="text-sm sm:text-base text-war-parchment/80 font-serif">
+            Тайпақ ауданынан басталған майдан шебі, Еуропаны азат ету соғыстары және ел тыныштығын күзеткен 37 жылдық бейбіт еңбек
+          </p>
+        </div>
+
+        <!-- Timeline Container -->
+        <div class="relative border-l-2 border-war-gold/40 ml-4 sm:ml-32 space-y-12">
+
+          <!-- 1925 ж -->
+          <div class="relative pl-8 sm:pl-10">
+            <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-war-dark border-2 border-war-gold flex items-center justify-center text-war-gold text-xs">
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="sm:absolute sm:-left-28 sm:top-2 text-war-gold font-bold font-title text-base sm:text-right block mb-1">1925 жыл</span>
+            <div class="parchment-card p-5 rounded-xl">
+              <h3 class="font-title text-lg text-white font-bold mb-1">Өмірге келуі және балалық шағы</h3>
+              <p class="text-sm text-stone-300">
+                10 қыркүйекте Батыс Қазақстан облысы Тайпақ ауданының Есенсай ауылында дүниеге келген. Аталған ауданның Калмыков орта мектебінде 7 сыныпты тәмамдаған.
+              </p>
+            </div>
+          </div>
+
+          <!-- 1943 ж -->
+          <div class="relative pl-8 sm:pl-10">
+            <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-war-red border-2 border-war-gold flex items-center justify-center text-white text-xs">
+              <i class="fas fa-gun"></i>
+            </div>
+            <span class="sm:absolute sm:-left-28 sm:top-2 text-war-gold font-bold font-title text-base sm:text-right block mb-1">1943 жыл</span>
+            <div class="parchment-card p-5 rounded-xl">
+              <h3 class="font-title text-lg text-white font-bold mb-1">1 қаңтар — Майдан шебіне аттану</h3>
+              <p class="text-sm text-stone-300">
+                1943 жылы комсомол қатарына қабылданып, 1 қаңтарда Отан қорғауға аттанды. Чкалов облысының Колтубановка станциясында 63-запастағы атқыштар полкінде қатардағы қызыл әскер, кейін 365-атқыштар полкінде курсант болып білім алды.
+              </p>
+            </div>
+          </div>
+
+          <!-- 1943-1944 жж -->
+          <div class="relative pl-8 sm:pl-10">
+            <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-war-dark border-2 border-war-gold flex items-center justify-center text-war-gold text-xs">
+              <i class="fas fa-motorcycle"></i>
+            </div>
+            <span class="sm:absolute sm:-left-28 sm:top-2 text-war-gold font-bold font-title text-base sm:text-right block mb-1">1943-1944</span>
+            <div class="parchment-card p-5 rounded-xl">
+              <h3 class="font-title text-lg text-white font-bold mb-1">Мотоциклді полк бөлімшесі командирі</h3>
+              <p class="text-sm text-stone-300">
+                Танкке қарсы атқыштар мотоциклді полк бөлімшесінің командирі ретінде шайқасқа түсті. 2-Украина, 3-Беларусь, 1-Прибалтика майдандарының алғы шебінде ұрысқа қатысты. 1944 жылы 27 маусымда майданда жарақат алды.
+              </p>
+            </div>
+          </div>
+
+          <!-- 1944-1947 жж -->
+          <div class="relative pl-8 sm:pl-10">
+            <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-war-red border-2 border-war-gold flex items-center justify-center text-white text-xs">
+              <i class="fas fa-award"></i>
+            </div>
+            <span class="sm:absolute sm:-left-28 sm:top-2 text-war-gold font-bold font-title text-base sm:text-right block mb-1">1944-1947</span>
+            <div class="parchment-card p-5 rounded-xl">
+              <h3 class="font-title text-lg text-white font-bold mb-1">Гвардиялық Днестр мотоциклді полкі</h3>
+              <p class="text-sm text-stone-300">
+                2-Беларусь майданында, Брест қаласында, кейін А.Невский орденді Гвардиялық Қызыл Тулы Днестр мотоциклді полкінің 1-бөлімшесінің пулеметтік взвод командирі ретінде қызметін жалғастырды. Румыния, Польша, Германия жерлерін азат етуге қатысты.
+              </p>
+            </div>
+          </div>
+
+          <!-- 1945-1950 жж -->
+          <div class="relative pl-8 sm:pl-10">
+            <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-war-dark border-2 border-war-gold flex items-center justify-center text-war-gold text-xs">
+              <i class="fas fa-feather-pointed"></i>
+            </div>
+            <span class="sm:absolute sm:-left-28 sm:top-2 text-war-gold font-bold font-title text-base sm:text-right block mb-1">1945-1950</span>
+            <div class="parchment-card p-5 rounded-xl">
+              <h3 class="font-title text-lg text-white font-bold mb-1">Әскери қызмет & Әскери тілші</h3>
+              <p class="text-sm text-stone-300">
+                Лапичи және Бобруйск гарнизондарында байланыс бөлімшелеріне жетекшілік етті. Сонымен қатар «Защитник Родины», «Во славу Родине» әскери газеттерінің тілшісі болды. Майдан шебіндегі жауапкершілігі үшін И.Сталиннің қолы қойылған 17 алғыс хатын иеленді.
+              </p>
+            </div>
+          </div>
+
+          <!-- 1951-1988 жж -->
+          <div class="relative pl-8 sm:pl-10">
+            <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-war-gold border-2 border-war-dark flex items-center justify-center text-war-dark text-xs">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <span class="sm:absolute sm:-left-28 sm:top-2 text-war-gold font-bold font-title text-base sm:text-right block mb-1">1951-1988</span>
+            <div class="parchment-card p-5 rounded-xl">
+              <h3 class="font-title text-lg text-white font-bold mb-1">Ішкі Істер органдарындағы абыройлы қызмет</h3>
+              <p class="text-sm text-stone-300">
+                1951 жылдан бастап ІІО қызметіне қабылданып, 1952 жылы Сталинабад милиция мектебін, 1960 жылы Алматы арнайы милиция мектебін заңгер мамандығымен бітірді. Теректі, Тайпақ, Чапаев аудандарында үздік учаскелік инспектор қызметін абыроймен атқарып, «милиция полковнигі» шенімен құрметті демалысқа шықты.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ВИРТУАЛДЫ КӨРМЕ (ЭКСПОЗИЦИЯ, ҚҰЖАТТАР, МАРАПАТТАР) -->
+    <section id="exhibition" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div class="text-war-gold text-3xl"><i class="fas fa-landmark"></i></div>
+        <h2 class="text-3xl sm:text-4xl font-title font-bold text-war-gold tracking-wide">ВИРТУАЛДЫ КӨРМЕ</h2>
+        <div class="h-1 w-24 bg-war-red mx-auto"></div>
+        <p class="text-sm sm:text-base text-stone-300 font-serif">
+          Тарихи архивтік фотоқұжаттар, майдан анықтамалары, әскери жолдастарымен түскен суреттер мен мемлекеттік марапаттар залы
+        </p>
+      </div>
+
+      <!-- Көрме санаты түймелері (Filter tabs) -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10 font-sans text-xs sm:text-sm">
+        <button onclick="filterExhibition('all')" class="exhibit-tab-btn active px-4 py-2 rounded-lg border border-war-gold bg-war-red text-white transition">Барлық экспонаттар</button>
+        <button onclick="filterExhibition('war')" class="exhibit-tab-btn px-4 py-2 rounded-lg border border-war-gold/40 bg-war-board text-war-parchment hover:border-war-gold transition">1941-1945 Майдан жылдары</button>
+        <button onclick="filterExhibition('docs')" class="exhibit-tab-btn px-4 py-2 rounded-lg border border-war-gold/40 bg-war-board text-war-parchment hover:border-war-gold transition">Архивтік құжаттар</button>
+        <button onclick="filterExhibition('police')" class="exhibit-tab-btn px-4 py-2 rounded-lg border border-war-gold/40 bg-war-board text-war-parchment hover:border-war-gold transition">Ішкі істер органдары</button>
+        <button onclick="filterExhibition('family')" class="exhibit-tab-btn px-4 py-2 rounded-lg border border-war-gold/40 bg-war-board text-war-parchment hover:border-war-gold transition">Әулет & Мемориал</button>
+      </div>
+
+      <!-- Көрме торкөзі (Exhibition Grid) -->
+      <div id="exhibitionGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Экспонат 1: Жас жауынгерлік сурет (ФОТО 127) -->
+        <div class="exhibit-item war parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Майдандас достарымен бірге (ФОТО 127)', '365-атқыштар полкі мен мотоциклді полкте бірге қызмет еткен қаруластарымен бірге түскен тарихи сурет.', 'https://placehold.co/800x1100/221c15/dfd7bf?text=ФОТО+127.jpg+(Майдандас+жолдастар)')">
+            <img src="image/foto132.jpg" alt="Майдандас жолдастарымен" class="w-full h-72 object-cover filter sepia-[0.35] group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-war-red text-white text-[11px] font-sans px-2.5 py-1 rounded">1943-1944 жж.</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Майдандас жауынгер достарымен</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                365-атқыштар полкі мен танкке қарсы атқыштар мотоциклді полкі сапындағы алғы шеп сарбаздарымен бірге түскен тарихи фотосурет.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/foto127.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 2: Гвардия алғыс парағы (ГВАРДИИ.pdf) -->
+        <div class="exhibit-item docs parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Сталиннің 17 алғыс бұйрығы тізімі (ГВАРДИИ.pdf)', 'Белгород, Харьков, Днепр, Минск, Молодечно, Вильно, Шяуляй, Шығыс Пруссия қалаларын азат етуге қатысқан Гвардия сержанты Хасан Сұлтанғалиевке жарияланған алғыстар куәлігі.', 'https://placehold.co/800x1100/1e1710/dfd7bf?text=ГВАРДИИ.pdf+(17+Алғыс+қағазы)')">
+            <img src="image/gvardii_doc.jpg" alt="Гвардия сержанты алғыс құжаты" class="w-full h-72 object-cover filter sepia-[0.4] group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-war-khaki text-war-gold text-[11px] font-sans px-2.5 py-1 rounded">Архивтік құжат</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">«Воину Победителю» алғыс хаты</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                Генералиссимус И.Сталиннің бұйрықтарымен жарияланған 17 тарихи жеңіс алғысының мөр басылған ресми құжаты.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/gvardii_doc.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 3: Жарақат анықтамасы (1945 жыл) -->
+        <div class="exhibit-item docs parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Майдандағы жарақат анықтамасы (14 қаңтар 1945 ж.)', '1-ші Гвардиялық мотоциклді полкі санитарлық бөлімі берген анықтама. 1944 жылы 27 маусымда Социалистік Отан үшін шайқаста жарақат алғанын куәландыратын құжат.', 'https://placehold.co/800x1100/18120d/dfd7bf?text=СПРАВКА+О+РАНЕНИИ+(1945+ж)')">
+            <img src="image/spravka.jpg" alt="Жарақат анықтамасы" class="w-full h-72 object-cover filter sepia-[0.4] group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-war-red text-white text-[11px] font-sans px-2.5 py-1 rounded">14.01.1945</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Әскери госпиталь анықтамасы</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                Гвардия ефрейторы Х.Сұлтанғалиевтің майдан шебіндегі ұрыста ерлікпен жараланғанын растайтын санитарлық анықтама.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/spravka_1945.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 4: Марапаттар тағынған жас сұсты фото -->
+        <div class="exhibit-item war parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Майдангер гвардияшының соғыстан кейінгі портреті', 'Кеудесінде Даңқ ордені, «Ерлігі үшін», «Жауынгерлік еңбегі үшін», «Германияны жеңгені үшін», «Кенигсбергті алғаны үшін» медальдары жарқыраған сәт.', 'https://placehold.co/800x1100/1f1a14/dfd7bf?text=ХАСАН+СҰЛТАНҒАЛИЕВ+(Марапаттар)')">
+            <img src="image/gvardii_doc.jpg" alt="Марапаттарымен жас күні" class="w-full h-72 object-cover filter contrast-110 group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-war-gold text-war-dark font-bold text-[11px] font-sans px-2.5 py-1 rounded">Марапаттары</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Жауынгерлік орден-медалдарымен</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                ІІІ дәрежелі Даңқ ордені, «За отвагу», «За боевые заслуги», «За взятие Кенигсберга» мемлекеттік наградаларымен.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/foto_medals.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 5: Милиция курсанттарымен бірге (7 қараша 1951 ж) -->
+        <div class="exhibit-item police parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Сталинабад милиция мектебінің курсанттары (7 қараша 1951 жыл)', 'Оперқұрамды қайта даярлау милиция мектебінің тыңдаушыларымен түскен тарихи фото.', 'https://placehold.co/800x1100/1c1813/dfd7bf?text=7+қараша+1951+жыл+(Милиция+мектебі)')">
+            <img src="image/foto127.jpg" alt="1951 жыл милиция мектебі" class="w-full h-72 object-cover filter contrast-105 group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-sky-900 text-white text-[11px] font-sans px-2.5 py-1 rounded">07.11.1951</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Сталинабад милиция мектебі</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                Соғыстан елге оралған соң 1951 жылы Ішкі істер органдарына қабылданып, біліктілікті шыңдау жылдарындағы әріптестерімен.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/foto_1951_nov7.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 6: Қызмет бабында, ауыл тұрғындарымен (1960 ж, ФОТО 132) -->
+        <div class="exhibit-item police parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Учаскелік милиция инспекторы қызмет барысында (1960 жыл, ФОТО 132)', 'Хасан Сұлтанғалиев ауыл тұрғындарымен кездесу өткізіп, құқықтық түсіндіру жұмыстарын жүргізуде.', 'https://placehold.co/800x1100/1a1510/dfd7bf?text=ФОТО+132.jpg+(1960+жыл,+Ел+алдында)')">
+            <img src="image/foto132.jpg" alt="1960 жыл қызметте" class="w-full h-72 object-cover filter contrast-105 group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-sky-900 text-white text-[11px] font-sans px-2.5 py-1 rounded">1960 жыл</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Халықпен етене қызмет</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                Теректі және Тайпақ аудандарында учаскелік инспектор болып жүрген шақтағы тұрғындармен жүздесу сәті.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/foto132.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 7: Радиобайланыс құрылғысы жанында (ФОТО 133) -->
+        <div class="exhibit-item police parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('ІІО байланыс құралдарымен жұмыс кезінде (ФОТО 133)', 'Майданда алған байланыс командирі тәжірибесін милиция құрылымындағы жедел байланысқа шебер қолданған шағы.', 'https://placehold.co/800x1100/1b1611/dfd7bf?text=ФОТО+133.jpg+(Радиобайланыс+орталығы)')">
+            <img src="https://placehold.co/600x800/1b1611/dfd7bf?text=ФОТО+133.jpg+(Радиобайланыс)" alt="Радиобайланыс құрылғысы" class="w-full h-72 object-cover filter contrast-105 group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-sky-900 text-white text-[11px] font-sans px-2.5 py-1 rounded">Байланыс қызметі</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Жедел байланыс бұрышы</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                Майдан даласындағы байланыс бөлімшесін басқарған тәжірибесі ІІО саласында да аса пайдалы болды.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/foto133.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 8: Облыстық слет (24.11.1972 ж, Орал қаласы, ФОТО 138) -->
+        <div class="exhibit-item police parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Облыстық милиция үздіктері слеті (24 қараша 1972 жыл, Орал қ.)', 'Участники областного слета отличников милиции. г. Уральск. Хасан Сұлтанғалиев өз саласының алдыңғы қатарлы майталманы ретінде.', 'https://placehold.co/800x1100/17120d/dfd7bf?text=ФОТО+138.jpg+(Милиция+үздіктері+слеті)')">
+            <img src="https://placehold.co/600x800/17120d/dfd7bf?text=ФОТО+138.jpg+(1972+жыл+Орал+қ.)" alt="1972 жыл слет" class="w-full h-72 object-cover filter contrast-105 group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-war-gold text-war-dark font-bold text-[11px] font-sans px-2.5 py-1 rounded">24.11.1972</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Милиция үздіктері слеті</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                Орал қаласында өткен облыстық милиция озаттары жиыны. КСРО ІІМ-нің үздік учаскелік инспекторы құрметі.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/foto138.jpg</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Экспонат 9: Ескерткіш мемориалдық тақта (Чапаев ауданы) -->
+        <div class="exhibit-item family parchment-card rounded-xl overflow-hidden border border-war-gold/30 hover:border-war-gold transition duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden group cursor-pointer" onclick="openLightbox('Мемориалдық ескерткіш тақта (Чапаев аудандық полиция бөлімі)', 'Хасан Сұлтанғалиев (10.09.1925 - 03.09.2004) құрметіне орнатылған тақта. Чапаев аудандық ішкі істер бөлімінде 1952-1988 жылдары қызмет атқарған.', 'https://placehold.co/800x1100/15110d/dfd7bf?text=МЕМОРИАЛДЫҚ+ТАҚТА+(Чапаев+ауданы)')">
+            <img src="https://placehold.co/600x800/15110d/dfd7bf?text=Мемориалдық+тақта.jpg" alt="Мемориалдық тақта" class="w-full h-72 object-cover filter contrast-110 group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <span class="text-war-gold text-2xl"><i class="fas fa-magnifying-glass-plus"></i></span>
+            </div>
+            <span class="absolute top-3 left-3 bg-war-red text-white text-[11px] font-sans px-2.5 py-1 rounded">Мемориал</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-title text-base font-bold text-war-gold mb-2">Мемориалдық ескерткіш тақта</h4>
+              <p class="text-xs text-stone-300 leading-relaxed">
+                Ардагердің 36 жылдық табанды еңбегін ұлықтаған Чапаев аудандық ІІБ ғимаратындағы қастерлі қара мәрмәр тақта.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-war-gold/15 text-[11px] font-mono text-amber-500/90">
+              Файл орны: <code>./assets/memorial_plaque.jpg</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- СҰХБАТ ЖӘНЕ ЕСТЕЛІКТЕР БӨЛІМІ -->
+    <section id="interview" class="py-20 px-4 sm:px-6 lg:px-8 bg-war-board/90 border-t border-war-gold/20">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="text-war-gold text-3xl"><i class="fas fa-quote-left"></i></div>
+          <h2 class="text-3xl sm:text-4xl font-title font-bold text-war-gold tracking-wide">СҰХБАТ ПЕН ЕСТЕЛІКТЕР</h2>
+          <div class="h-1 w-24 bg-war-red mx-auto"></div>
+          <p class="text-sm sm:text-base text-stone-300 font-serif">
+            Ардагердің көзін көрген әріптестері мен ұрпақтарының жүрекжарды естеліктері және тарихи әңгімелер
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- 1-Естелік: Музей меңгерушісінің сөзі -->
+          <div class="parchment-light p-8 rounded-2xl relative shadow-xl">
+            <span class="text-war-red text-4xl absolute top-6 right-6 opacity-40"><i class="fas fa-quote-right"></i></span>
+            <div class="space-y-4">
+              <h4 class="font-title font-bold text-lg text-stone-900 border-b border-stone-300 pb-2">
+                «Саналы ғұмырын ел қорғауға арнаған тұлға»
+              </h4>
+              <p class="text-stone-800 text-sm leading-relaxed italic">
+                «Саналы ғұмырын ішкі істер саласына арнаған Ұлы Отан соғысының және Ішкі Істер органдарының ардагері Сұлтанғалиев Хасан туралы мәліметтер ұрпақ тәрбиесінде, жеке құрамның патриоттық, моральдық-эстетикалық тәрбиесін арттыруда, сондай-ақ тұрғындар арасында ішкі істер органдарының әскери дағдыларын насихаттауда мәні өте зор және біз әр уақытта мақтан тұтамыз!»
+              </p>
+              <div class="pt-2">
+                <p class="font-sans font-bold text-sm text-stone-950">Алтын Қадырғалиева</p>
+                <p class="text-xs text-stone-600 font-sans">Батыс Қазақстан облысы Полиция Департаментінің музейі меңгерушісі</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2-Естелік: Майдан мен милиция жылдары жайлы естелік -->
+          <div class="parchment-light p-8 rounded-2xl relative shadow-xl">
+            <span class="text-war-red text-4xl absolute top-6 right-6 opacity-40"><i class="fas fa-quote-right"></i></span>
+            <div class="space-y-4">
+              <h4 class="font-title font-bold text-lg text-stone-900 border-b border-stone-300 pb-2">
+                «Майдандағы батылдық пен бейбіт күндегі әділдік»
+              </h4>
+              <p class="text-stone-800 text-sm leading-relaxed italic">
+                «Хасан ағамыз соғыс шебінде 2-Украина, 3-Беларусь, 1-Прибалтика бағытында пулемет взводын басқарып, Днепрден өтуде, Польша мен Шығыс Пруссия қалаларын босатуда ерекше көзге түскен. Милицияға келгеннен кейін де ауыл тұрғындарының әр мәселесіне әділ қарап, халықтың шын ықыласына бөленген КСРО-ның үздік милиционері атанды.»
+              </p>
+              <div class="pt-2">
+                <p class="font-sans font-bold text-sm text-stone-950">Қарулас әріптестері мен ардагерлер кеңесі</p>
+                <p class="text-xs text-stone-600 font-sans">Чапаев және Тайпақ аудандық ІІБ ардагерлер ұйымы</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- МУЛЬТИМЕДИА ЗАЛЫ: .MP3, .MP4, .JPG МАТЕРИАЛДАРЫНА АРНАЛҒАН БӨЛІМ -->
+    <section id="media-room" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div class="text-war-redBright text-3xl"><i class="fas fa-photo-film"></i></div>
+        <h2 class="text-3xl sm:text-4xl font-title font-bold text-war-gold tracking-wide">МУЛЬТИМЕДИАЛЫҚ АРХИВ</h2>
+        <div class="h-1 w-24 bg-war-red mx-auto"></div>
+        <p class="text-sm sm:text-base text-stone-300 font-serif">
+          Бейне жазбалар, дауыстық естеліктер және түпнұсқа суреттерге арналған интерактивті медиа бұрыш
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- 1. БЕЙНЕ СҰХБАТ / ДЕРЕКТІ ФИЛЬМ ОРНЫ (.mp4) -->
+        <div class="lg:col-span-7 parchment-card p-6 rounded-2xl border border-war-gold/30 space-y-4">
+          <div class="flex items-center justify-between border-b border-war-gold/20 pb-3">
+            <div class="flex items-center space-x-2 text-war-gold">
+              <i class="fas fa-video text-lg"></i>
+              <h3 class="font-title font-bold text-base sm:text-lg">Бейне сұхбат / Деректі фильм (.mp4)</h3>
+            </div>
+            <span class="text-xs bg-war-red/30 text-war-gold px-2.5 py-1 rounded font-mono">1080p Video</span>
+          </div>
+
+          <!-- Стильденген бейне ойнатқыш контейнері -->
+          <div class="relative bg-black rounded-xl overflow-hidden border border-war-gold/40 shadow-inner group aspect-video flex items-center justify-center">
+            
+            <!-- Егер .mp4 файлыңыз болса осы video тегін қолданыңыз -->
+            <video 
+              id="hassanVideo" 
+              controls 
+              preload="metadata"
+              poster="https://placehold.co/1280x720/120f0b/d4af37?text=Бейнежазба+орны+(video.mp4)" 
+              class="w-full h-full object-contain"
+            >
+              <!-- Өз видеоңыздың жолын осы жерге көрсетесіз -->
+              <source src="hassan_interview.mp4" type="video/mp4">
+              Сіздің браузеріңіз бұл видеоны қолдамайды.
+            </video>
+
+          </div>
+
+          <div class="bg-black/40 p-4 rounded-lg border border-war-gold/15 space-y-2">
+            <h4 class="text-sm font-semibold text-white">Қолданушыға арналған нұсқаулық:</h4>
+            <p class="text-xs text-stone-300 leading-relaxed">
+              Бейне сұхбатты қосу үшін осы HTML-дегі <code>&lt;source src="hassan_interview.mp4" type="video/mp4"&gt;</code> жолына өзіңіздің компьютеріңіздегі немесе сервердегі <strong>.mp4</strong> файлыңыздың атауын жазып қойыңыз.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. АУДИО ЕСТЕЛІК & ТАСПА (.mp3) ЖӘНЕ СУРЕТТЕР (.jpg) -->
+        <div class="lg:col-span-5 space-y-8">
+
+          <!-- Аудио жазба блогы (.mp3) -->
+          <div class="parchment-card p-6 rounded-2xl border border-war-gold/30 space-y-4">
+            <div class="flex items-center justify-between border-b border-war-gold/20 pb-3">
+              <div class="flex items-center space-x-2 text-war-gold">
+                <i class="fas fa-microphone-lines text-lg"></i>
+                <h3 class="font-title font-bold text-base sm:text-lg">Аудио жазба / Радио хабар (.mp3)</h3>
+              </div>
+              <span class="text-xs bg-war-khaki/60 text-war-gold px-2 py-0.5 rounded font-mono">Audio</span>
+            </div>
+
+            <p class="text-xs text-stone-300">
+              Ардагердің өз даусы, радио эфирдегі сұхбаты немесе ол туралы естелік жазбасы:
+            </p>
+
+            <!-- Стильденген аудио ойнатқыш -->
+            <div class="bg-stone-900/90 p-4 rounded-xl border border-war-gold/30 shadow-lg">
+              <audio controls class="w-full">
+                <!-- Өз аудиоңыздың жолын осы жерге көрсетесіз -->
+                <source src="hassan_audio.mp3" type="audio/mpeg">
+                Браузер аудио ойнатуды қолдамайды.
+              </audio>
+            </div>
+
+            <div class="text-[11px] text-amber-500/90 font-mono bg-black/40 p-2.5 rounded border border-war-gold/15">
+              Орны: <code>&lt;source src="audio.mp3" type="audio/mpeg"&gt;</code>
+            </div>
+          </div>
+
+          <!-- Фотосуреттер альбомы (.jpg) жүктеу орны -->
+          <div class="parchment-card p-6 rounded-2xl border border-war-gold/30 space-y-3">
+            <div class="flex items-center justify-between border-b border-war-gold/20 pb-2">
+              <div class="flex items-center space-x-2 text-war-gold">
+                <i class="fas fa-images text-lg"></i>
+                <h3 class="font-title font-bold text-base sm:text-lg">Архивтік фотоальбом (.jpg)</h3>
+              </div>
+              <span class="text-xs text-stone-400 font-mono">8+ фото</span>
+            </div>
+            
+            <p class="text-xs text-stone-300">
+              Қосымша түпнұсқа отбасылық және қызметтік суреттерді толықтыруға арналған бөлік.
+            </p>
+
+            <div class="grid grid-cols-3 gap-2 pt-1">
+              <div class="aspect-square rounded-lg bg-stone-800 border border-war-gold/30 overflow-hidden cursor-pointer hover:border-war-gold transition" onclick="openLightbox('Отбасылық архив: 1988 ж.', 'Жұбайы Ақырыс және ұрпақтарымен түскен жылы бейне.', 'https://placehold.co/800x800/1e1710/dfd7bf?text=FOTO135.jpg')">
+                <img src="https://placehold.co/200x200/1e1710/dfd7bf?text=ФОТО+135" alt="ФОТО 135" class="w-full h-full object-cover">
+              </div>
+              <div class="aspect-square rounded-lg bg-stone-800 border border-war-gold/30 overflow-hidden cursor-pointer hover:border-war-gold transition" onclick="openLightbox('Ұрпақтарымен бірге (ФОТО 137)', 'Ата жолын қуып, ел қорғау саласына барған перзенттері мен немерелері.', 'https://placehold.co/800x800/1e1710/dfd7bf?text=FOTO137.jpg')">
+                <img src="https://placehold.co/200x200/1e1710/dfd7bf?text=ФОТО+137" alt="ФОТО 137" class="w-full h-full object-cover">
+              </div>
+              <div class="aspect-square rounded-lg bg-stone-800 border border-war-gold/30 overflow-hidden flex flex-col items-center justify-center text-center p-1 text-war-gold hover:bg-war-board transition cursor-pointer">
+                <i class="fas fa-plus text-base mb-1"></i>
+                <span class="text-[10px] uppercase font-sans">Жаңа сурет қосу</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ӘУЛЕТ САБАҚТАСТЫҒЫ БӨЛІМІ (МӘУЕЛІ БӘЙТЕРЕК) -->
+    <section id="dynasty" class="py-20 px-4 sm:px-6 lg:px-8 bg-war-board/90 border-t border-war-gold/20">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="text-war-gold text-3xl"><i class="fas fa-tree"></i></div>
+          <h2 class="text-3xl sm:text-4xl font-title font-bold text-war-gold tracking-wide">МӘУЕЛІ БӘЙТЕРЕК — ПОЛИЦИЯ ӘУЛЕТІ</h2>
+          <div class="h-1 w-24 bg-war-red mx-auto"></div>
+          <p class="text-sm sm:text-base text-stone-300 font-serif">
+            Өмірлік жары Ақырыспен бірге тәрбиелеген 8 перзенттің 5-еуі және 4 немересі әке жолын жалғастырды
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-6 space-y-6">
+            <div class="parchment-card p-6 rounded-2xl border border-war-gold/30 space-y-4">
+              <h3 class="font-title text-xl font-bold text-war-gold">Әке аманатына адалдық</h3>
+              <p class="text-sm text-stone-300 leading-relaxed">
+                Сұлтанғалиев Хасан ақсақал мен өмірлік жары <strong>Қадерова Ақырыс</strong> анамыз өсірген 8 баланың 5-еуі (соның ішінде 1 қызы) құқық қорғау саласын таңдап, халыққа адал қызмет етті. Бүгінде 4 немересі де ата жолын қуып, Ішкі істер органдарында абыройлы қызмет атқарып келеді.
+              </p>
+              
+              <div class="grid grid-cols-2 gap-4 pt-3 font-sans text-center">
+                <div class="bg-black/50 p-4 rounded-xl border border-war-gold/20">
+                  <span class="text-3xl font-extrabold text-war-gold block">5 баласы</span>
+                  <span class="text-xs text-stone-400 mt-1 block">Ішкі істер саласында (1 қызымен)</span>
+                </div>
+                <div class="bg-black/50 p-4 rounded-xl border border-war-gold/20">
+                  <span class="text-3xl font-extrabold text-war-gold block">4 немересі</span>
+                  <span class="text-xs text-stone-400 mt-1 block">Династия сабақтастығын жалғастырушы</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-war-red/20 border-l-4 border-war-red rounded-r-xl text-stone-300 text-xs sm:text-sm">
+              <strong class="text-white block mb-1">Мұражай құндылығы:</strong>
+              «Бүгінгі күні ардагеріміздің өмірбаяны мен еңбек жолы туралы құжаттары, фотосуреттері, орден-медальдары Батыс Қазақстан облысы Полиция департаментінің музейінде лайықты сақтаулы.»
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="relative parchment-card p-4 rounded-2xl border-2 border-war-gold/40 shadow-2xl overflow-hidden">
+              <img 
+                src="image/family_photo.jpg" 
+                alt="Хасан Сұлтанғалиев отбасымен" 
+                class="w-full h-auto rounded-xl filter contrast-105"
+              />
+              <div class="mt-3 text-center">
+                <p class="text-xs text-war-parchment/80 font-serif italic">
+                  Хасан Сұлтанғалиев жұбайы Ақырыс Қадерова және офицер перзенттерімен бірге
+                </p>
+                <p class="text-[11px] font-mono text-amber-500/90 mt-1">Орны: <code>./assets/family_photo.jpg</code></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ТӨМЕНГІ САЛТАНАТТЫ ЖӘНЕ МӘҢГІЛІК АЛАУ БӨЛІМІ (FOOTER) -->
+    <footer class="bg-war-dark border-t-2 border-war-gold/40 pt-16 pb-12 px-4 relative overflow-hidden text-center">
+      
+      <!-- Мәңгілік Алау Иконасы және Әсері -->
+      <div class="relative inline-block mb-6">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-gradient-to-t from-war-redBright via-war-gold to-yellow-200 flex items-center justify-center text-war-dark text-3xl sm:text-4xl shadow-[0_0_40px_rgba(230,92,0,0.8)] animate-pulse">
+          <i class="fas fa-fire"></i>
+        </div>
+      </div>
+
+      <h3 class="font-title font-black text-xl sm:text-2xl text-war-gold tracking-widest uppercase mb-2">
+        ЕР ЕСІМІ - ЕЛ ЕСІНДЕ
+      </h3>
+
+      <p class="max-w-xl mx-auto text-sm text-stone-400 font-serif leading-relaxed mb-8">
+        Ұлы Отан соғысының жеңімпазы, Ішкі істер органдарының ардагері, милиция полковнигі Хасан Сұлтанғалиевтің рухына тағзым!
+      </p>
+
+      <div class="st-george-ribbon h-2 max-w-md mx-auto mb-8 rounded-full"></div>
+
+      <div class="text-xs text-stone-500 font-sans space-y-1">
+        <p>Батыс Қазақстан облысы Полиция Департаменті музейінің материалдары негізінде жасалған.</p>
+        <p>© 1925 – 2025 • Жеңістің 80 жылдығы мен Хасан Сұлтанғалиевтің 100 жылдығына арналады.</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- СУРЕТТЕР МЕН ҚҰЖАТТАРДЫ ҮЛКЕЙТІП КӨРУГЕ АРНАЛҒАН MODAL (LIGHTBOX) -->
+  <div id="lightboxModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="relative max-w-4xl w-full parchment-card p-4 sm:p-6 rounded-2xl border-2 border-war-gold text-war-parchment">
+      
+      <!-- Жабу батырмасы -->
+      <button onclick="closeLightbox()" class="absolute top-4 right-4 text-war-gold hover:text-white text-2xl z-10">
+        <i class="fas fa-xmark"></i>
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div class="rounded-xl overflow-hidden bg-black flex items-center justify-center max-h-[70vh] border border-war-gold/30">
+          <img id="lightboxImg" src="" alt="Экспонат" class="max-h-[70vh] w-auto object-contain">
+        </div>
+        <div class="space-y-4">
+          <span class="text-xs bg-war-red text-white px-2.5 py-1 rounded font-sans uppercase tracking-wider">Тарихи архив</span>
+          <h3 id="lightboxTitle" class="font-title font-bold text-xl text-war-gold leading-tight"></h3>
+          <p id="lightboxDesc" class="text-sm text-stone-300 font-serif leading-relaxed"></p>
+          <div class="pt-4 border-t border-war-gold/20 flex items-center justify-between text-xs text-stone-400 font-sans">
+            <span>БҚО ПД Музей қоры</span>
+            <button onclick="closeLightbox()" class="px-4 py-1.5 bg-war-gold text-war-dark font-bold rounded hover:brightness-110">Жабу</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================================
+       1. ОТ ШОҚТАРЫ ЖӘНЕ АЛАУ КҮЛІ АНИМАЦИЯСЫ (CANVAS EMBERS ANIMATION)
+       Ұлы Отан соғысының салтанатты, отты жылдарының рухын беретін фон.
+       ========================================================================= */
+    const canvas = document.getElementById('embersCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const particleCount = Math.min(65, Math.floor(window.innerWidth / 20));
+
+    class Ember {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = height + Math.random() * 80;
+        this.size = Math.random() * 2.8 + 1.2;
+        this.speedY = Math.random() * 1.5 + 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.8;
+        this.opacity = Math.random() * 0.8 + 0.2;
+        this.fadeSpeed = Math.random() * 0.004 + 0.002;
+        // От шоғының реңктері: Алтын, қызғылт-сары, қызыл
+        const colors = [
+          'rgba(255, 120, 20, ',
+          'rgba(212, 175, 55, ',
+          'rgba(230, 60, 30, ',
+          'rgba(255, 190, 60, '
+        ];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX + Math.sin(this.y * 0.01) * 0.4;
+        this.opacity -= this.fadeSpeed;
+
+        if (this.y < -20 || this.opacity <= 0) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color + this.opacity + ')';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgba(255, 100, 20, 0.8)';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      const ember = new Ember();
+      ember.y = Math.random() * height; // Бастапқыда экран бойынша шашырату
+      particles.push(ember);
+    }
+
+    function animateEmbers() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      requestAnimationFrame(animateEmbers);
+    }
+    animateEmbers();
+
+    /* =========================================================================
+       2. МОБИЛЬДІ МӘЗІРДІ БАСҚАРУ
+       ========================================================================= */
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Мәзірден сілтеме басқанда жабу
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    /* =========================================================================
+       3. ВИРТУАЛДЫ КӨРМЕ СҮЗГІСІ (EXHIBITION FILTERING)
+       ========================================================================= */
+    function filterExhibition(category) {
+      const tabs = document.querySelectorAll('.exhibit-tab-btn');
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-war-red', 'text-white');
+        tab.classList.add('bg-war-board', 'text-war-parchment');
+      });
+
+      // Басылған түймені белсенді ету
+      event.currentTarget.classList.add('bg-war-red', 'text-white');
+      event.currentTarget.classList.remove('bg-war-board', 'text-war-parchment');
+
+      const items = document.querySelectorAll('.exhibit-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    /* =========================================================================
+       4. LIGHTBOX МОДАЛЬДЫ ТЕРЕЗЕСІ (СУРЕТТЕРДІ КӨРУ)
+       ========================================================= */
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDesc = document.getElementById('lightboxDesc');
+
+    function openLightbox(title, desc, imgSrc) {
+      lightboxTitle.innerText = title;
+      lightboxDesc.innerText = desc;
+      lightboxImg.src = imgSrc;
+      lightboxModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightboxModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Modal сыртын басқанда жабу
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
+    });
+
+    // ESC пернесін басқанда жабу
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
